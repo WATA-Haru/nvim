@@ -35,6 +35,11 @@ require("nvim-tree").setup
 		},
 	},
 
+	git = {
+		enable = true,
+		ignore = false,
+	},
+
 	actions = {
 		expand_all = {
 			max_folder_discovery = 100,
