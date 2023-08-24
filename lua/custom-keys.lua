@@ -46,3 +46,45 @@ vim.keymap.set('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
 vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
 vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
 vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
+
+
+-- terminal setting
+-- https://qiita.com/delphinus/items/aea16e82de2145d2a6b7
+
+-- Move into windows(exit terminal insert)
+vim.api.nvim_set_keymap('n', '<A-h>', '<C-w>w', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<A-h>', '<Esc><C-w>w', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>w', { noremap = true, silent = true })
+
+-- Move into windows (reversed + exit terminal insert)
+vim.api.nvim_set_keymap('n', '<A-l>', '<C-w>W', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<A-l>', '<Esc><C-w>W', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>W', { noremap = true, silent = true })
+
+-- Close other windows and maximize current window
+vim.api.nvim_set_keymap('n', '<A-o>', '<C-w>o', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<A-o>', '<Esc><C-w>o', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<A-o>', '<C-\\><C-n><C-w>o', { noremap = true, silent = true })
+
+-- Move to command mode
+--vim.api.nvim_set_keymap('n', '<S-;>', ':', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<S-;>', '<Esc><C-o>:', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<S-;>', '<C-\\><C-n><C-w>:', { noremap = true, silent = true })
+
+-- Search
+--vim.api.nvim_set_keymap('n', '<S-/>', '/', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '/', '<Esc><C-o>/', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '/', '<C-\\><C-n>/', { noremap = true, silent = true })
+
+--terminal auto insert & teminal under position
+-- Define the custom command 'T'
+vim.cmd([[command! -nargs=* T split | wincmd j | resize 20 | terminal <args>]])
+
+-- Set up the autocommand for entering terminal buffers
+--vim.cmd([[
+--  augroup TerminalSettings
+--    autocmd!
+--    autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+--  augroup END
+--]])
+
