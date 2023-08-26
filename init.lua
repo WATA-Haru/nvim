@@ -10,6 +10,7 @@ require('debugging')
 require('styling')
 require('syntax-highlight')
 require('statusbar')
+require('commentout')
 
 -- set number
 vim.opt.number = true
