@@ -5,6 +5,9 @@ local map = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 vim.cmd("filetype plugin indent on")
 
+map('n', '<leader>f', '1z=', { noremap = true })
+map('n', '<leader>s', ':set spell!<CR>', { noremap = true })
+
 -- ESC to jk
 map("i", "jk", "<ESC>", { noremap = true })
 
