@@ -1,17 +1,3 @@
 require('common-setting')
 require('keys')
 require('lazynvim')
-
--- plugins
---require('plugins')
---require('mason-config')
---require('file-explorer')
---require('file-finder')
---require('file-header-view')
---require('code-completion')
---require('debugging')
---require('styling')
---require('syntax-highlight')
---require('statusbar')
---require('commentout')
---require('night-fox')
