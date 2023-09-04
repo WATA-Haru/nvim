@@ -1,11 +1,15 @@
---fetch keymap
+--fetch keyvim.api.nvim_set_keymap
 local map = vim.api.nvim_set_keymap
+
+-- update leader key to space
+vim.g.mapleader = " "
+vim.cmd("filetype plugin indent on")
 
 -- ESC to jk
 map("i", "jk", "<ESC>", { noremap = true })
 
 -- map the key n to run the command : NvimTreeToggle
-map('n', 'n', [[:NvimTreeToggle<CR>]], {})
+vim.api.nvim_set_keymap('n', 'n', [[:NvimTreeToggle<CR>]], {})
 
 -- nvim-dap keymappings
 -- Press f5 to debug
@@ -26,13 +30,8 @@ map('n', '<F12>', [[:lua require'dap'.step_out()<CR>]], {})
 map('n', '<F6>', [[:lua require'dap'.repl.open()<CR>]], {})
 -- Press dl to run last ran configuration (if you used f5 before it will re run it etc)
 map('n', 'dl', [[:lua require'dap'.run_last()<CR>]], {})
-
 -- Press Ctrl+d to toggle debug mode, will remove NvimTree also
 map('n', '<C-d>', [[:NvimTreeToggle<CR> :lua require'dapui'.toggle()<CR>]], {})
-
--- update leader key to space
-vim.g.mapleader = " "
-vim.cmd("filetype plugin indent on")
 
 -- use keymap in file-header-view(bufferline-plugin)
 -- bufferline close setting
@@ -42,14 +41,13 @@ vim.keymap.set('n', '<leader>wall', '<CMD>BufferLineCloseOthers<CR>')
 vim.keymap.set('n', '<leader>we', '<CMD>BufferLinePickClose<CR>')
 
 -- (reference)https://github.com/kazhala/dotfiles/blob/master/.config/nvim/lua/kaz/plugins/bufferline.lua
-vim.keymap.set('n', 'gb', '<CMD>BufferLinePick<CR>')
+vim.keymap.set('n', '<leader>gb', '<CMD>BufferLinePick<CR>')
 vim.keymap.set('n', '<leader>ts', '<CMD>BufferLinePickClose<CR>')
 vim.keymap.set('n', '<S-l>', '<CMD>BufferLineCycleNext<CR>')
 vim.keymap.set('n', '<S-h>', '<CMD>BufferLineCyclePrev<CR>')
 vim.keymap.set('n', ']b', '<CMD>BufferLineMoveNext<CR>')
 vim.keymap.set('n', '[b', '<CMD>BufferLineMovePrev<CR>')
 vim.keymap.set('n', 'gs', '<CMD>BufferLineSortByDirectory<CR>')
-
 
 -- terminal setting
 -- https://qiita.com/delphinus/items/aea16e82de2145d2a6b7
@@ -82,6 +80,16 @@ vim.api.nvim_set_keymap('t', '<A-/>', '<C-\\><C-n>/', { noremap = true, silent =
 --terminal auto insert & teminal under position
 -- Define the custom command 'T'
 vim.cmd([[command! -nargs=* T split | wincmd j | resize 20 | terminal <args>]])
+
+-- telescope.nvim
+-- Search files, even hidden ones
+vim.keymap.set('n', '<leader>ff', ':lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
+-- ripgrep files, respects gitignore
+vim.keymap.set('n', '<leader>fg', ':lua require"telescope.builtin".live_grep()<CR>', {})
+
+-- mason-lsp-config
+vim.keymap.set('n', '<leader>ls', '<CMD>LspStop<CR>')
+vim.keymap.set('n', '<leader>la', '<CMD>LspStart<CR>')
 
 -- Set up the autocommand for entering terminal buffers
 --vim.cmd([[
