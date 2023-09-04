@@ -15,11 +15,6 @@ vim.opt.encoding = "utf-8"
 vim.opt.list = false
 vim.opt.clipboard = "unnamedplus"
 
--- spell check
-vim.opt.spelllang = 'en_us'
-vim.api.nvim_set_keymap('n', '<leader>f', '1z=', { noremap = true })
-Vim.api.nvim_set_keymap('n', '<leader>s', ':set spell!<CR>', { noremap = true })
-
 -- windows wsl only settings 
 -- but if you write if vim.fn.has("win64") == 1 then , system cant use clipboard.
 if vim.fn.has('wsl') == 1 then
