@@ -11,15 +11,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {
-  defaults = {
-    lazy = true,
-  },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-  },
-}
-
-require("lazy").setup('plugin', opts)
+--require("lazy").setup('plugin', opts)
+-- delete or add plugin dir for each environment
+require("lazy").setup({
+	{import = 'core-plugins'},
+	{import = '42-plugins'},
+	defaults = {
+		lazy = true,
+	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+	},
+})
