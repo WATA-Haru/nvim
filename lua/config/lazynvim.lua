@@ -14,8 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 --require("lazy").setup('plugin', opts)
 -- delete or add plugin dir for each environment
 require("lazy").setup({
-	{import = 'core-plugins'},
-	{import = '42-plugins'},
+	{import = '../plugins'},
+	{import = '../42-plugins'},
 	defaults = {
 		lazy = true,
 	},

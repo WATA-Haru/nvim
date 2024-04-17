@@ -1,3 +1,3 @@
-require('common-setting')
-require('keys')
-require('lazynvim')
+require('config/common-setting')
+require('config/keys')
+require('config/lazynvim')
