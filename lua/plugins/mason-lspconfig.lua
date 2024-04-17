@@ -1,6 +1,7 @@
 return {
 	'neovim/nvim-lspconfig',
-	lazy = false,
+	--lazy = true,
+	event = "BufReadPre",
 	dependencies = {
 		'williamboman/mason-lspconfig.nvim',
 		cmd = { "LspInfo", "LspInstall", "LspUninstall" },

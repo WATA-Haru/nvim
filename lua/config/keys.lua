@@ -11,7 +11,30 @@ vim.cmd("filetype plugin indent on")
 -- ESC to jk
 map("i", "jk", "<ESC>", { noremap = true })
 
--- map the key n to run the command : NvimTreeToggle
--- vim.api.nvim_set_keymap('n', 'n', [[:NvimTreeToggle<CR>]], {})
---
+-- fern
+map("n", "<leader>e", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", { noremap = true, silent = true })
+map("n", "<leader>o", "", {
+  callback = function()
+    if vim.bo.filetype == "fern" then
+      vim.cmd.wincmd "p"
+    else
+      vim.cmd.Fern(".", "-reveal=%", "-drawer", "-width=40")
+    end
+  end,
+  noremap = true,
+  silent = true,
+})
+
+-- lspconfig
+vim.keymap.set('n', '<leader>ls', '<CMD>LspStop<CR>')
+vim.keymap.set('n', '<leader>la', '<CMD>LspStart<CR>')
+
+-- bufferline
+map('n', 'gt', '<Cmd>:BufferLineCycleNext<CR>', { noremap = true, silent = true })
+map('n', 'gT', '<Cmd>:BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+
+-- telescope
+vim.keymap.set('n', '<leader>ff', ':lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
+-- ripgrep files, respects gitignore
+vim.keymap.set('n', '<leader>fg', ':lua require"telescope.builtin".live_grep()<CR>', {})
 
