@@ -7,6 +7,9 @@ vim.cmd("filetype plugin indent on")
 
 -- map('n', '<leader>f', '1z=', { noremap = true })
 -- map('n', '<leader>s', ':set spell!<CR>', { noremap = true })
+-- window resize
+map('n', '<leader><', '5<C-W><', { noremap = true })
+map('n', '<leader>>', '5<C-W>>', { noremap = true })
 
 -- ESC to jk
 map("i", "jk", "<ESC>", { noremap = true })
