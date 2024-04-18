@@ -12,13 +12,26 @@ vim.cmd("filetype plugin indent on")
 map("i", "jk", "<ESC>", { noremap = true })
 
 -- fern
-map("n", "<leader>e", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", { noremap = true, silent = true })
-map("n", "<leader>o", "", {
+map("n", "<leader>ve", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", { noremap = true, silent = true })
+map("n", "<leader><leader>v", "", {
   callback = function()
     if vim.bo.filetype == "fern" then
       vim.cmd.wincmd "p"
     else
       vim.cmd.Fern(".", "-reveal=%", "-drawer", "-width=40")
+    end
+  end,
+  noremap = true,
+  silent = true,
+})
+
+map("n", "<leader>e", "<cmd>:Fern . -reveal=%<CR>", { noremap = true, silent = true })
+map("n", "<leader>o", "", {
+  callback = function()
+    if vim.bo.filetype == "fern" then
+      vim.cmd.wincmd "p"
+    else
+      vim.cmd.Fern(".", "-reveal=%")
     end
   end,
   noremap = true,
