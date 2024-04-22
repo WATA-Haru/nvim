@@ -50,7 +50,10 @@ map('n', 'gt', '<Cmd>:BufferLineCycleNext<CR>', { noremap = true, silent = true 
 map('n', 'gT', '<Cmd>:BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 -- telescope
-vim.keymap.set('n', '<leader>ff', ':lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
+map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
+map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', {noremap=true,silent=true})
+map('n', 'gr', ':lua require"telescope.builtin".lsp_references()<CR>', {noremap=true,silent=true})
+
 -- ripgrep files, respects gitignore
 vim.keymap.set('n', '<leader>fg', ':lua require"telescope.builtin".live_grep()<CR>', {})
 
