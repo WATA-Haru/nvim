@@ -6,31 +6,36 @@ return {
 		'williamboman/mason-lspconfig.nvim',
 		cmd = { "LspInfo", "LspInstall", "LspUninstall" },
 		config = function()
-		require("mason-lspconfig").setup({
-			ensure_installed = {
+			-- Mason LSPConfig のセットアップ
+			require("mason-lspconfig").setup({
+				ensure_installed = {
 					"lua_ls",
 					"bashls",
 					"clangd",
-					--"clang-format",
 					"cmake",
-					--"cssls",
 					"dockerls",
 					"docker_compose_language_service",
-					--"gopls",
-					--"html",
 					"jsonls",
-					--"tsserver",
-					--"marksman",
-					--"nimls",
 					"pylsp",
-			},
-		})
-		-- auto lspconfig setting
-		require('mason-lspconfig').setup_handlers {
-		  function(server_name)
-		    require('lspconfig')[server_name].setup {}
-		  end,
-		}
+				},
+			})
+			-- auto lspconfig setting
+			require('mason-lspconfig').setup_handlers {
+				function(server_name)
+					require('lspconfig')[server_name].setup {}
+				end,
+			}
+
+			-- 新しい設定を追加する
+			local cmp_nvim_lsp = require "cmp_nvim_lsp"
+			require("lspconfig").clangd.setup {
+				capabilities = cmp_nvim_lsp.default_capabilities(),
+				cmd = {
+					"clangd",
+					"--offset-encoding=utf-16", -- 新しい設定を追加
+				},
+			}
 		end
 	}
 }
+
