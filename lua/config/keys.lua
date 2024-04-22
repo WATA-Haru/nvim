@@ -42,12 +42,13 @@ map("n", "<leader>o", "", {
 })
 
 -- lspconfig
-vim.keymap.set('n', '<leader>ls', '<CMD>LspStop<CR>')
-vim.keymap.set('n', '<leader>la', '<CMD>LspStart<CR>')
+map('n', '<leader>ls', '<cmd>LspStop<CR>', {noremap = true, silent = true})
+map('n', '<leader>la', '<cmd>LspStart<CR>', {noremap = true, silent = true})
+map('n', 'K','<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true})
 
 -- bufferline
-map('n', 'gt', '<Cmd>:BufferLineCycleNext<CR>', { noremap = true, silent = true })
-map('n', 'gT', '<Cmd>:BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+map('n', 'gt', '<cmd>:BufferLineCycleNext<CR>', { noremap = true, silent = true })
+map('n', 'gT', '<cmd>:BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 -- telescope
 map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
