@@ -17,6 +17,7 @@ return {
 					"docker_compose_language_service",
 					"jsonls",
 					"pylsp",
+					"tsserver",
 				},
 			})
 			-- auto lspconfig setting
