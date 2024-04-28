@@ -47,14 +47,28 @@ map('n', '<leader>la', '<cmd>LspStart<CR>', {noremap = true, silent = true})
 map('n', 'K','<cmd>lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true})
 
 -- bufferline
-map('n', 'gt', '<cmd>:BufferLineCycleNext<CR>', { noremap = true, silent = true })
-map('n', 'gT', '<cmd>:BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+map('n', 'gt', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
+map('n', 'gT', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 -- telescope
 map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files({no_ignore=true, hidden=true})<CR>', {})
-map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', {noremap=true,silent=true})
-map('n', 'gr', ':lua require"telescope.builtin".lsp_references()<CR>', {noremap=true,silent=true})
+map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', {noremap=true, silent=true})
+map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', {noremap=true, silent=true})
 
 -- ripgrep files, respects gitignore
-vim.keymap.set('n', '<leader>fg', ':lua require"telescope.builtin".live_grep()<CR>', {})
+--vim.keymap.set('n', '<leader>fg', ':lua require"telescope.builtin".live_grep()<CR>', {})
+map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', {})
 
+-- copilot
+function toggle_copilot()
+  if vim.g.copilot_enabled then
+    vim.cmd('Copilot disable')
+    vim.g.copilot_enabled = false
+    print("Copilot disabled")
+  else
+    vim.cmd('Copilot enable')
+    vim.g.copilot_enabled = true
+    print("Copilot enabled")
+  end
+end
+vim.keymap.set('n', '<leader>cp', toggle_copilot, { noremap = true, silent = true })
