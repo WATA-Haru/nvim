@@ -72,3 +72,14 @@ function toggle_copilot()
   end
 end
 vim.keymap.set('n', '<leader>cp', toggle_copilot, { noremap = true, silent = true })
+
+map('n', '<F5>', ':DapContinue<CR>', { silent = true })
+map('n', '<F10>', ':DapStepOver<CR>', { silent = true })
+map('n', '<F11>', ':DapStepInto<CR>', { silent = true })
+map('n', '<F12>', ':DapStepOut<CR>', { silent = true })
+map('n', '<leader>b', ':DapToggleBreakpoint<CR>', { silent = true })
+map('n', '<leader>B', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
+map('n', '<leader>lp', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', { silent = true })
+map('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
+map('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
+map('n', '<leader>d', ':lua require("dapui").toggle()<CR>', {})
