@@ -1,18 +1,17 @@
-return { 
-	'EdenEast/nightfox.nvim',
+return {
+	'jacoborus/tender.vim',
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require('nightfox').setup({
-			options = {
-    				styles = {
-      				comments = "italic",
-      				--keywords = "bold",
-      				--types = "italic,bold",
-				}
-			}
-		})
-		--vim.cmd("colorscheme nightfox")
-		vim.cmd("colorscheme nordfox")
-	end,
+      vim.cmd("colorscheme tender")
+    end
 }
+
+--return {
+--    'AlexvZyl/nordic.nvim',
+--    lazy = false,
+--    priority = 1000,
+--    config = function()
+--        require 'nordic' .load()
+--    end
+--}

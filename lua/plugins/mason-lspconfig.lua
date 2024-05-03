@@ -9,15 +9,11 @@ return {
 			-- Mason LSPConfig のセットアップ
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
 					"bashls",
 					"clangd",
 					"cmake",
 					"dockerls",
 					"docker_compose_language_service",
-					"jsonls",
-					"pylsp",
-					"tsserver",
 				},
 			})
 			-- auto lspconfig setting
