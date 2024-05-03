@@ -1,7 +1,7 @@
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
-vim.opt.fileencoding = 'utf-8'
 
+vim.opt.fileencoding = 'utf-8'
 -- set number
 vim.opt.number = true
 
@@ -17,13 +17,12 @@ vim.opt.title = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.hlsearch = true
-
 vim.opt.ignorecase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.wrap = true 
+vim.opt.wrap = true
 vim.opt.helplang = 'ja', 'en'
 vim.opt.updatetime = 300
 vim.opt.showtabline = 2
@@ -37,6 +36,26 @@ vim.opt.wrap = true --端までコードが届いた際に折り返す
 vim.opt.list = false
 vim.opt.clipboard = "unnamedplus"
 
+-- netrw configurations
+vim.g.netrw_liststyle = 3  -- Note: This sets the style to 3, make sure to set it once
+vim.g.netrw_sizestyle = "H"
+vim.g.netrw_banner = 0
+vim.g.netrw_preview = 1
+vim.g.netrw_altv = 1
+vim.g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
+vim.g.netrw_winsize = 40
+vim.g.netrw_browse_split = 3
+
+-- User specific variables
+vim.g.user42 = 'hwatahik'
+vim.g.mail42 = 'hwatahik@student.42tokyo.jp'
+
+-- for tender
+if vim.fn.has("termguicolors") == 1 then
+  vim.opt.termguicolors = true
+end
+
+-- clipboard
 if vim.fn.has("wsl") == 1 then
 	if vim.fn.executable("wl-copy") == 0 then
 		print("wl-clipboard not found, clipboard integration won't work")
@@ -59,6 +78,3 @@ if vim.fn.has("wsl") == 1 then
 		}
 	end
 end
-
--- recognize python3_host_prog to pass checkhealth
-vim.g.python3_host_prog = '/usr/bin/python3'
