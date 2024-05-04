@@ -11,17 +11,34 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---require("lazy").setup('plugin', opts)
--- delete or add plugin dir for each environment
-require("lazy").setup({
-	{import = '../plugins'},
-	{import = '../42-plugins'},
-	defaults = {
-		lazy = true,
-	},
-	performance = {
-		cache = {
-			enabled = true,
+if vim.g.vscode then
+	--require("lazy").setup('plugin', opts)
+	-- delete or add plugin dir for each environment
+	require("lazy").setup({
+		{import = '../plugins'},
+		{import = '../only-nvim'},
+		defaults = {
+			lazy = true,
 		},
-	},
-})
+		performance = {
+			cache = {
+				enabled = true,
+			},
+		},
+	})
+else
+	--require("lazy").setup('plugin', opts)
+	-- delete or add plugin dir for each environment
+	require("lazy").setup({
+		{import = '../plugins'},
+		{import = '../only-nvim'},
+		defaults = {
+			lazy = true,
+		},
+		performance = {
+			cache = {
+				enabled = true,
+			},
+		},
+	})
+end
