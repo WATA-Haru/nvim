@@ -3,8 +3,8 @@ if vim.g.vscode then
 	-- https://github.com/vscode-neovim/vscode-neovim
 	vim.opt.langmenu = 'en_US.UTF-8'
 	vim.cmd('language message en_US.UTF-8')
-	vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
-	vim.opt.clipboard = 'unnamedplus'
+  --vim.opt.clipboard:append("unnamedplus")
+	vim.opt.clipboard = "unnamedplus"
 else
     -- ordinary Neovim
 	vim.scriptencoding = 'utf-8'
@@ -28,7 +28,7 @@ else
 	vim.opt.shiftwidth = 2
 	vim.opt.tabstop = 2
 	vim.opt.wrap = true
-	vim.opt.helplang = 'ja', 'en'
+	vim.opt.helplang = {'ja', 'en'}
 	vim.opt.updatetime = 300
 	vim.opt.showtabline = 2
 	vim.opt.clipboard = 'unnamedplus' --クリップボードとレジスタを共有
