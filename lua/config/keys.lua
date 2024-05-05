@@ -27,12 +27,12 @@ map('n', '<Leader>N', '?<Up>\\C<CR>', opts)
 map("i", "jk", "<ESC>", opts)
 
 -- Normal mode mappings
-map("n", "<C-h>", "^", opts)
-map("n", "<C-l>", "$", opts)
+map("n", "<S-h>", "^", opts)
+map("n", "<S-l>", "$", opts)
 
 -- Visual mode mappings
-map("v", "<C-h>", "^", opts)
-map("v", "<C-l>", "$", opts)
+map("v", "<S-h>", "^", opts)
+map("v", "<S-l>", "$", opts)
 
 -- Inc/Dec settings
 map("n", "+", "<C-a>", opts)
