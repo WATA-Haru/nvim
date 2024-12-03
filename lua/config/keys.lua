@@ -34,6 +34,9 @@ map("n", "<S-l>", "$", opts)
 map("v", "<S-h>", "^", opts)
 map("v", "<S-l>", "$", opts)
 
+-- term mode mappings
+map("t", "<C-]>", "<C-\\><C-n>", opts)
+
 -- Inc/Dec settings
 map("n", "+", "<C-a>", opts)
 map("n", "-", "<C-x>", opts)
@@ -42,10 +45,20 @@ map("n", "-", "<C-x>", opts)
 map('n', '<leader>ls', '<cmd>LspStop<CR>', opts)
 map('n', '<leader>la', '<cmd>LspStart<CR>', opts)
 map('n', 'K','<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+map('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 -- telescope
 map('n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
 map('n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
+
+-- fuzzy-finder
+map('n', '<leader>ff', '<cmd>lua require"telescope.builtin".find_files()<CR>', { desc = 'Telescope find files' })
+map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { desc = 'Telescope live grep' })
+map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
+map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
+
+-- no-neck-pain
+vim.keymap.set('n', '<leader><leader>k', '<cmd>NoNeckPain<CR>', opts)
 
 -- fern
 map("n", "<leader>ve", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", opts)

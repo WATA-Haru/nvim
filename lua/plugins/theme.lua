@@ -1,11 +1,11 @@
-return {
-	'jacoborus/tender.vim',
-	lazy = false,
-	priority = 1000,
-	config = function()
-      vim.cmd("colorscheme tender")
-    end
-}
+--return {
+--	'jacoborus/tender.vim',
+--	lazy = false,
+--	priority = 1000,
+--	config = function()
+--      vim.cmd("colorscheme tender")
+--    end
+--}
 
 --return {
 --    'AlexvZyl/nordic.nvim',
@@ -15,3 +15,14 @@ return {
 --        require 'nordic' .load()
 --    end
 --}
+--
+
+return {
+	'cocopon/iceberg.vim',
+	lazy = false,
+	priority = 1000,
+	config = function()
+		vim.cmd("colorscheme iceberg")
+	end
+}
+

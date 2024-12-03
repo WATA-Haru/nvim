@@ -2,6 +2,7 @@ vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 
 vim.opt.fileencoding = 'utf-8'
+
 -- set number
 vim.opt.number = true
 
@@ -32,9 +33,21 @@ vim.opt.hidden = true
 vim.opt.swapfile = false --スワップファイルを生成しない
 vim.opt.wrap = true --端までコードが届いた際に折り返す
 
--- show tab as  ^ charcter
-vim.opt.list = false
+vim.opt.list = true --
+vim.opt.listchars = {
+	tab='-»',
+	eol='↲',
+	space = '·'
+	--trail='-',
+	--extends='»', 
+	--precedes='«', 
+	--nbsp='%',
+}
+
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 99
 
 -- netrw configurations
 vim.g.netrw_liststyle = 3  -- Note: This sets the style to 3, make sure to set it once
@@ -44,11 +57,16 @@ vim.g.netrw_preview = 1
 vim.g.netrw_altv = 1
 vim.g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
 vim.g.netrw_winsize = 40
-vim.g.netrw_browse_split = 3
+vim.g.netrw_keepdir = 0
 
 -- User specific variables
 vim.g.user42 = 'hwatahik'
 vim.g.mail42 = 'hwatahik@student.42tokyo.jp'
+
+-- lsp dont show error witch virtual text
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+)
 
 -- for tender
 if vim.fn.has("termguicolors") == 1 then
@@ -57,24 +75,40 @@ end
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
-	if vim.fn.executable("wl-copy") == 0 then
-		print("wl-clipboard not found, clipboard integration won't work")
-	else
-		vim.g.clipboard = {
-			name = "wl-clipboard (wsl)",
-			copy = {
-				["+"] = 'wl-copy --foreground --type text/plain',
-				["*"] = 'wl-copy --foreground --primary --type text/plain',
-			},
-			paste = {
-				["+"] = (function()
-					return vim.fn.systemlist('wl-paste --no-newline|sed -e "s/\r$//"', {''}, 1) -- '1' keeps empty lines
-				end),
-				["*"] = (function() 
-					return vim.fn.systemlist('wl-paste --primary --no-newline|sed -e "s/\r$//"', {''}, 1)
-				end),
-			},
-			cache_enabled = true
-		}
-	end
+	vim.g.clipboard = {
+		name = "myClipboard",
+		copy = {
+			["+"] = "win32yank.exe -i",
+			["*"] = "win32yank.exe -i",
+		},
+		paste = {
+			["+"] = "win32yank.exe -o",
+			["*"] = "win32yank.exe -o",
+		},
+		cache_enabled = 1,
+	}
 end
+
+
+--if vim.fn.has("wsl") == 1 then
+--	if vim.fn.executable("wl-copy") == 0 then
+--		print("wl-clipboard not found, clipboard integration won't work")
+--	else
+--		vim.g.clipboard = {
+--			name = "wl-clipboard (wsl)",
+--			copy = {
+--				["+"] = 'wl-copy --foreground --type text/plain',
+--				["*"] = 'wl-copy --foreground --primary --type text/plain',
+--			},
+--			paste = {
+--				["+"] = (function()
+--					return vim.fn.systemlist('wl-paste --no-newline|sed -e "s/\r$//"', {''}, 1) -- '1' keeps empty lines
+--				end),
+--				["*"] = (function() 
+--					return vim.fn.systemlist('wl-paste --primary --no-newline|sed -e "s/\r$//"', {''}, 1)
+--				end),
+--			},
+--			cache_enabled = true
+--		}
+--	end
+--end
