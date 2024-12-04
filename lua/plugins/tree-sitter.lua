@@ -1,7 +1,7 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
 	run = {':TSUpdate',},
-	event = {'BufRead'}, -- Lazy load on buffer read, or use 'FileType' for specific file types
+	event = {'BufNewFile', 'BufRead'}, -- Lazy load on buffer read, or use 'FileType' for specific file types
 	config = function()
 		require'nvim-treesitter.configs'.setup {
 			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "vue", "typescript","html","css", "rust", "javascript"},
