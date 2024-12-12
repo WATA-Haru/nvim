@@ -57,31 +57,64 @@ map('n', '<leader>fg', '<cmd>lua require"telescope.builtin".live_grep()<CR>', { 
 map('n', '<leader>fb', '<cmd>lua require"telescope.builtin".buffers()<CR>', { desc = 'Telescope buffers' })
 map('n', '<leader>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>', { desc = 'Telescope help tags' })
 
--- no-neck-pain
-vim.keymap.set('n', '<leader><leader>k', '<cmd>NoNeckPain<CR>', opts)
+-- oil.nvim
+-- Create Ex, Ve, Se commands similar to netrw
+vim.api.nvim_create_user_command("Ex", function()
+  --vim.cmd("Oil .")
+  vim.cmd("Oil %:p:h")
+end, {})
 
--- fern
-map("n", "<leader>ve", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", opts)
-map("n", "<leader><leader>v", "", {
-  callback = function()
-    if vim.bo.filetype == "fern" then
-      vim.cmd.wincmd "p"
-    else
-      vim.cmd.Fern(".", "-reveal=%", "-drawer", "-width=40")
-    end
-  end,
-  noremap = true,
-  silent = true,
-})
-map("n", "<leader>e", "<cmd>:Fern . -reveal=%<CR>", opts)
-map("n", "<leader>o", "", {
-  callback = function()
-    if vim.bo.filetype == "fern" then
-      vim.cmd.wincmd "p"
-    else
-      vim.cmd.Fern(".", "-reveal=%")
-    end
-  end,
-  noremap = true,
-  silent = true,
-})
+vim.api.nvim_create_user_command("Ve", function()
+  --vim.cmd("vertical Oil .")
+  vim.cmd("vertical Oil %:p:h")
+end, {})
+
+vim.api.nvim_create_user_command("Se", function()
+  --vim.cmd("split Oil .")
+  vim.cmd("split Oil %:p:h")
+end, {})
+
+-- Normal mode keymap for <leader>E to open Oil in current directory
+--vim.keymap.set("n", "<leader>e", ":Oil .<CR>", { silent = true, noremap = true, desc = "Open Oil in current directory" })
+vim.keymap.set("n", "<leader>e", ":Oil %:p:h<CR>", { noremap = true, silent = true, desc = "Open Oil in current file directory" })
+vim.keymap.set("n", "<leader>ve", ":vertical Oil %:p:h.<CR>", { noremap = true, silent = true, desc = "Open Oil in current file directory" })
+
+vim.keymap.set("n", "<leader>o", ":Oil .<CR>", { noremap = true, silent = true, desc = "Open Oil in current file directory" })
+vim.keymap.set("n", "<leader>vo", ":vertical Oil .<CR>", { noremap = true, silent = true, desc = "Open Oil in current file directory" })
+
+
+
+--TODO: oil.nvim
+-- - [ ] open respect dir path
+-- - [ ] t key directly open tab (replace <C-t>)
+-- - [ ] p key directly open preview (replace <C-p>)
+
+
+-- no-neck-pain
+--vim.keymap.set('n', '<leader><leader>k', '<cmd>NoNeckPain<CR>', opts)
+--
+---- fern
+--map("n", "<leader>ve", "<cmd>:Fern . -reveal=% -drawer -toggle -width=40<CR>", opts)
+--map("n", "<leader><leader>v", "", {
+--  callback = function()
+--    if vim.bo.filetype == "fern" then
+--      vim.cmd.wincmd "p"
+--    else
+--      vim.cmd.Fern(".", "-reveal=%", "-drawer", "-width=40")
+--    end
+--  end,
+--  noremap = true,
+--  silent = true,
+--})
+--map("n", "<leader>e", "<cmd>:Fern . -reveal=%<CR>", opts)
+--map("n", "<leader>o", "", {
+--  callback = function()
+--    if vim.bo.filetype == "fern" then
+--      vim.cmd.wincmd "p"
+--    else
+--      vim.cmd.Fern(".", "-reveal=%")
+--    end
+--  end,
+--  noremap = true,
+--  silent = true,
+--})

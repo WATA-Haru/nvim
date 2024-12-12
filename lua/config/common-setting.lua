@@ -33,7 +33,18 @@ vim.opt.hidden = true
 vim.opt.swapfile = false --スワップファイルを生成しない
 vim.opt.wrap = true --端までコードが届いた際に折り返す
 
-vim.opt.list = true --
+-- fold setting
+-- https://www.jackfranklin.co.uk/blog/code-folding-in-vim-neovim/
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldtext = ""
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 1
+vim.opt.foldnestmax = 4
+
+
+vim.opt.list = true
 vim.opt.listchars = {
 	tab='-»',
 	eol='↲',
