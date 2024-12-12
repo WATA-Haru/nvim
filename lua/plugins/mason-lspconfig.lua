@@ -23,9 +23,11 @@ return {
         "docker_compose_language_service",
         "rust_analyzer",
         "volar",
-        "ts_ls",
+        --"ts_ls",
+        "tsserver",
 				"html",
 				"cssls",
+				"hls",
       },
     })
 
@@ -56,7 +58,7 @@ return {
     }
 
 		local vue_typescript_plugin = require("mason-registry").get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
-		lspconfig.ts_ls.setup({
+		lspconfig.tsserver.setup({
 			filetypes = {
 				"javascript",
 				"javascriptreact",
@@ -96,7 +98,7 @@ return {
  --   lspconfig.volar.setup({
  --     capabilities = capabilities,
  --   })
- --   lspconfig.ts_ls.setup({
+ --   lspconfig.tsserver.setup({
  --     capabilities = capabilities,
  --     single_file_support = false,
  --     init_options = {
