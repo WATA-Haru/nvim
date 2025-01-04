@@ -83,6 +83,10 @@ vim.keymap.set("n", "<leader>o", ":Oil .<CR>", { noremap = true, silent = true, 
 vim.keymap.set("n", "<leader>vo", ":vertical Oil .<CR>", { noremap = true, silent = true, desc = "Open Oil in current file directory" })
 
 
+vim.api.nvim_create_autocmd({"BufNewFile"}, {
+  pattern = {"*.vue"},
+  command = "0r ~/.config/nvim/skeleton/skeleton.vue",
+})
 
 --TODO: oil.nvim
 -- - [ ] open respect dir path
